@@ -1,0 +1,6 @@
+INDEX VERSION 1.4+C:\Users\Admin\Desktop\stockMarketCharting\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+655839292.index
+409111.index
+3434066608.index
+4005585331.index
+2146454403.index
