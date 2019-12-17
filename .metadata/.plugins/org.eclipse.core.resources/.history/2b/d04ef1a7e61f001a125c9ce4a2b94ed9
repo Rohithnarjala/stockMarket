@@ -1,5 +1,0 @@
-package com.cognizant.stockMarketCharting.authenticationservice.controller;
-
-public class AuthenticationController {
-
-}

@@ -35,9 +35,9 @@ public class Users {
 	@NotNull
 	private String email;
 	
-	@Column(name="us_mobile_number")
+	@Column(name="us_contact_number")
 	@NotNull
-	private long mobileNumber;
+	private String contactNumber;
 	
 	@Column(name="us_confirmed")
 	@NotNull
@@ -51,13 +51,13 @@ public class Users {
     private Set<Role> roleList;
 
 	public Users(@NotNull int id, @NotNull String userName, @NotNull String password, @NotNull String email,
-			@NotNull long mobileNumber, @NotNull boolean confirmed, Set<Role> roleList) {
+			@NotNull String contactNumber, @NotNull boolean confirmed, Set<Role> roleList) {
 		super();
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
 		this.email = email;
-		this.mobileNumber = mobileNumber;
+		this.contactNumber = contactNumber;
 		this.confirmed = confirmed;
 		this.roleList = roleList;
 	}
@@ -76,13 +76,13 @@ public class Users {
 	}
 
 	public Users(@NotNull int id, @NotNull String userName, @NotNull String password, @NotNull String email,
-			@NotNull long mobileNumber, @NotNull boolean confirmed) {
+			@NotNull String contactNumber, @NotNull boolean confirmed) {
 		super();
 		this.id = id;
 		this.userName = userName;
 		this.password = password;
 		this.email = email;
-		this.mobileNumber = mobileNumber;
+		this.contactNumber = contactNumber;
 		this.confirmed = confirmed;
 	}
 
@@ -118,12 +118,12 @@ public class Users {
 		this.email = email;
 	}
 
-	public long getMobileNumber() {
-		return mobileNumber;
+	public String getContactNumber() {
+		return contactNumber;
 	}
 
-	public void setMobileNumber(long mobileNumber) {
-		this.mobileNumber = mobileNumber;
+	public void setContactNumber(String contactNumber) {
+		this.contactNumber = contactNumber;
 	}
 
 	public boolean isConfirmed() {
@@ -137,7 +137,7 @@ public class Users {
 	@Override
 	public String toString() {
 		return "Users [id=" + id + ", userName=" + userName + ", password=" + password + ", email=" + email
-				+ ", mobileNumber=" + mobileNumber + ", confirmed=" + confirmed + ", roleList=" + roleList + "]";
+				+ ", contactNumber=" + contactNumber + ", confirmed=" + confirmed + ", roleList=" + roleList + "]";
 	}
 	
 }

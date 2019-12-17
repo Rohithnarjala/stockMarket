@@ -1,5 +1,0 @@
-package com.cognizant.stockMarketCharting.authenticationservice.repository;
-
-public interface RoleRepository {
-
-}

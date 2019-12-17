@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -16,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.cognizant.stockMarketCharting.authenticationservice.exception.UserAlreadyExistsException;
 import com.cognizant.stockMarketCharting.authenticationservice.model.Users;
 import com.cognizant.stockMarketCharting.authenticationservice.security.AppUserDetailsService;
+import com.cognizant.stockMarketCharting.authenticationservice.service.EmailServiceImpl;
+import com.cognizant.stockMarketCharting.authenticationservice.service.UserConfirmationService;
+import com.cognizant.stockMarketCharting.authenticationservice.service.UserService;
 
 
 
@@ -31,15 +37,36 @@ public class UserController {
 	@Autowired
 	AppUserDetailsService appUserDetailsService;
 	
+	@Autowired
+	UserService userService;
+	
+	@Autowired
+	UserConfirmationService userConfirmationService;
+	
+	@Autowired
+	EmailServiceImpl emailServiceImpl;
+	
 	@PostMapping
-	public boolean signup(@RequestBody @Valid Users user) throws UserAlreadyExistsException {
-
+	public void signup(@RequestBody @Valid Users user) throws UserAlreadyExistsException {
 		LOGGER.info("start");
-		boolean flag = false;
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
-		flag = appUserDetailsService.signup(user);
+		appUserDetailsService.signup(user);
+		String token = userConfirmationService.setTokenForConfirmation(user.getUserName());
+		emailServiceImpl.send("ctstestmail10@gmail.com", user.getEmail(), "confirm yyour email", "http://localhost:8083/authentication-service/stock-market-authentication/confirm/"+token);
 		LOGGER.info("End");
-		return flag;
+	}
+	@GetMapping("/{user}")
+	public Users getUser(@PathVariable String user) {
+		LOGGER.info("Start");
+		LOGGER.info("End");
+		return userService.getUser(user);
+		
+	}
+	@PutMapping
+	public void editUserDetails(@RequestBody Users user ) {
+		LOGGER.info("Start");
+		userService.editUserDetails(user);
+		LOGGER.info("End");
 	}
 }
 

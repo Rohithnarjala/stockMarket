@@ -1,0 +1,64 @@
+<div class="container ">
+    <div class="borderAlign">
+        <form class=" p-3 mt-5 ml-auto mr-auto border  border-secondary " [formGroup]='loginForm'
+            (ngSubmit)="login(loginForm)">
+            <div class="form-group row">
+                
+                    <!-- <div class="invalidError">
+                            <div class=" col-sm-12  col-md-12 col-lg-12 login-notification-color border   p-1 rounded"
+                                *ngIf='userFlag == true'>
+                                <small class="p-2">please Login before adding items to cart</small>
+                            </div>
+                        </div>
+                        <div class="invalidError">
+                                <div class=" col-sm-12  col-md-12 col-lg-12 login-notification-color border   p-1 rounded"
+                                    *ngIf='signupFlag == 1'>
+                                    <small class="p-2">Login with your new Credentials</small>
+                                </div>
+                            
+                        </div> -->
+                <div class="m-3 pb-3 pt-3">
+                    <h2>Login</h2>
+                    <div class="invalidError">
+                        <div class=" col-sm-12 col-md-12 col-lg-12 login-notification-color border   p-1 rounded"
+                            *ngIf='loginError == true'>
+                            <small class="p-2">Invalid UserName or Password</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12 col-sm-12 pt-1 ">
+                    <label for="userName">Username</label>
+                    <input type="text" class="form-control" id="userName" name="userName" placeholder="Enter Username"
+                        formControlName="userName">
+                    <div
+                        *ngIf="(!loginForm.controls.userName.valid && (loginForm.controls.userName.dirty || loginForm.controls.userName.touched))">
+                        <div *ngIf="loginForm.controls.userName.errors.required" class="errorMessage"><small>UserName is
+                                Required</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" col-lg-12 col-md-12 col-sm-12 pt-4">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Enter Password" formControlName="password">
+                    <div
+                        *ngIf="(!loginForm.controls.password.valid && (loginForm.controls.password.dirty || loginForm.controls.password.touched))">
+                        <div *ngIf="loginForm.controls.password.errors.required" class="errorMessage"><small>password is
+                                Required</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" col-lg-3 col-md-3 col-sm-2 col-2 pt-4">
+                    <button type="submit" class="btn btn-info mt-2" [disabled]="!loginForm.valid">Login</button>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-10 col-10 text-right mt-3 pt-4 ">
+                    <h6 class="text-muted">New here?<a class="text-info" routerLink="/signup"
+                            routerLinkActive="active-link">Signup</a></h6>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

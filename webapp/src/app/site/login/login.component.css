@@ -1,0 +1,23 @@
+.errorMessage{
+    color: red;
+    position: absolute;
+}
+.loginAlign{
+    margin-top: 10px;
+}
+.login-notification-color{
+	background-color:#ffcccc;
+    color:#ff4000;
+   
+
+  }
+  a,a:hover{
+    text-decoration:none;
+}
+.borderAlign{
+   padding:100px;
+}
+.invalidError{
+    position: absolute;
+
+}

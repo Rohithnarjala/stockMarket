@@ -1,0 +1,21 @@
+a,a:hover{
+    text-decoration:none;
+}
+.errorMessage{
+    color:red;
+    position: absolute;
+}
+.borderAlign{
+    padding:100px;
+ }
+ .invalidError{
+    position: absolute;
+
+}
+.signup-notification-color{
+	background-color:#ffcccc;
+    color:#ff4000;
+  }
+  .login{
+      color:rgb(82, 9, 252);
+  }

@@ -1,0 +1,149 @@
+<div class="container ">
+    <div class="borderAlign">
+        <form class="p-3 mt-5 ml-auto mr-auto border border-secondary" [formGroup]="signupForm">
+            <div class="row">
+                <div class="m-3">
+                    <h2>Signup</h2>
+                    <!-- <div class="invalidError">
+                            <div class=" col-sm-12 col-md-12 col-lg-12 signup-notification-color border   p-1 rounded"
+                                *ngIf='userExistFlag == false'>
+                                <small class="p-2">User Already Exists Sign up with new Credentials</small>
+                            </div>
+                        </div> -->
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group  col-lg-12 pt-3 col-md-12 col-sm-12">
+                    <label for="userName">Username<b class="text-danger">*</b></label>
+                    <input type="text" 
+                    [ngClass]="[(signupForm.controls.userName.dirty || signupForm.controls.userName.touched) && signupForm.controls.userName.valid ? 'is-valid' : '',
+                    (signupForm.controls.userName
+                    .dirty || signupForm.controls.userName.touched) && signupForm.controls.userName.invalid ? 'is-invalid' : '', 
+                    (signupForm.controls.userName.valid || signupForm.controls.userName.invalid) ? 'form-control' : '']"
+                    id="userName" formControlName="userName"
+                        placeholder="Enter Username">
+                    <div
+                        *ngIf="(!signupForm.controls.userName.valid && (signupForm.controls.userName.dirty || signupForm.controls.userName.touched))">
+                        <div class="errorMessage" *ngIf="signupForm.controls.userName.errors.required"><small>UserName
+                                is
+                                Required</small></div>
+                    </div>
+                </div>
+                <div class="errorMessage" *ngIf="signupForm.get('userName').errors?.maxlength"> <small>UserName should not exceed 20 characters</small></div>
+                <div class="errorMessage" *ngIf="signupForm.get('userName').errors?.minlength"><small> UserName should be greater than 2 characters</small></div> 
+            </div>
+
+            <!-- <div class="form-row">
+                <div class="form-group  col-lg-6 col-md-6 col-sm-12 pt-3">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" formControlName="firstName"
+                        placeholder="Enter First Name">
+                    <div
+                        *ngIf="(!signupForm.controls.firstName.valid && (signupForm.controls.firstName.dirty || signupForm.controls.firstName.touched))">
+                        <div class="errorMessage" *ngIf="signupForm.controls.firstName.errors.required"><small>Firstname
+                                is
+                                Required</small></div>
+                    </div>
+                </div>
+
+                <div class="form-group col-lg-6 col-md-6 col-sm-12 pt-3">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" formControlName="lastName"
+                        placeholder="Enter Last Name">
+                    <div
+                        *ngIf="(!signupForm.controls.lastName.valid && (signupForm.controls.lastName.dirty || signupForm.controls.lastName.touched))">
+                        <div class="errorMessage" *ngIf="signupForm.controls.lastName.errors.required"><small>Lastname
+                                is
+                                Required</small></div>
+                    </div>
+                </div>
+
+            </div> -->
+            <div class="form-row">
+                <div class="form-group col-lg-12 col-md-12 col-sm-12 pt-3">
+                    <label for="password">Password<b class="text-danger">*</b></label>
+                    <input type="password"
+                    [ngClass]="[(signupForm.controls.password.dirty || signupForm.controls.password.touched) && signupForm.controls.password.valid ? 'is-valid' : '',
+                    (signupForm.controls.password.dirty || signupForm.controls.password.touched) && signupForm.controls.password.invalid ? 'is-invalid' : '', 
+                    (signupForm.controls.password.valid || signupForm.controls.password.invalid) ? 'form-control' : '']" 
+                    id="password" formControlName="password"
+                        placeholder="Enter Password">
+                    <div
+                        *ngIf="(!signupForm.controls.password.valid && (signupForm.controls.password.dirty || signupForm.controls.password.touched))">
+                        <div class="errorMessage" *ngIf="signupForm.controls.password.errors.required"><small>password
+                                is
+                                Required</small></div>
+                    </div>
+                </div>
+            </div>
+                <div class="form-row">
+                    <div class="form-group col-lg-12 col-md-12 col-sm-12 pt-3">
+                        <label for="email">Email<b class="text-danger">*</b></label>
+                        <input type="text" 
+                        [ngClass]="[(signupForm.controls.email.dirty || signupForm.controls.email.touched) && signupForm.controls.email.valid ? 'is-valid' : '',
+                        (signupForm.controls.email.dirty || signupForm.controls.email.touched) && signupForm.controls.email.invalid ? 'is-invalid' : '', 
+                        (signupForm.controls.email.valid || signupForm.controls.email.invalid) ? 'form-control' : '']" id="email" formControlName="email"
+                            placeholder="Enter Email">
+                        <div
+                            *ngIf="(!signupForm.controls.email.valid && (signupForm.controls.email.dirty || signupForm.controls.email.touched))">
+                            <div class="errorMessage" *ngIf="signupForm.controls.email.errors.required"><small>Email
+                                    is
+                                    Required</small></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                <div class="form-group  col-lg-12 col-md-12 col-sm-12 pt-3">
+                    <label for="contactNumber">Contact Number<b class="text-danger">*</b></label>
+                    <input type="text" 
+                    [ngClass]="[(signupForm.controls.contactNumber.dirty || signupForm.controls.contactNumber.touched) && signupForm.controls.contactNumber.valid ? 'is-valid' : '',
+                (signupForm.controls.contactNumber.dirty || signupForm.controls.contactNumber.touched) && signupForm.controls.contactNumber.invalid ? 'is-invalid' : '', 
+                (signupForm.controls.contactNumber.valid || signupForm.controls.contactNumber.invalid) ? 'form-control' : '']"
+                    id="contactNumber" formControlName="contactNumber" placeholder="Enter Contact Number">
+                    <div
+                        *ngIf="(!signupForm.controls.contactNumber.valid && (signupForm.controls.contactNumber.dirty || signupForm.controls.contactNumber.touched))">
+                        <div class="errorMessage" *ngIf="signupForm.controls.contactNumber.errors.required">
+                            <small>Contact Number
+                                is
+                                Required</small>
+                        </div>
+                    </div>
+                    <div class="errorMessage" *ngIf="signupForm.get('contactNumber').errors?.maxlength"> <small>Contact should not exceed 10 digits</small></div>
+           <!-- <div class="errorMessage" *ngIf="registerationForm.get('contactNumber').errors?.minlength"><small> Contact should be greater than 2 characters</small></div> -->
+            </div>
+                </div>
+            
+                <!-- <div class="form-group col-lg-6 col-md-6 col-sm-12 pt-3">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="confirmPassword" formControlName="confirmPassword"
+                        placeholder="Enter Confirm Password" (keyup)='passwordMatch()'>
+                    <div
+                        *ngIf="(!signupForm.controls.confirmPassword.valid && (signupForm.controls.confirmPassword.dirty || signupForm.controls.confirmPassword.touched))">
+                        <div class="errorMessage" *ngIf="signupForm.controls.confirmPassword.errors.required">
+                            <small>confirm
+                                password is Required</small></div>
+                    </div>
+                    <div
+                        *ngIf='signupForm.controls.confirmPassword.dirty || signupForm.controls.confirmPassword.touched'>
+                        <div *ngIf='passwordFlag == false'>
+                            <small class="errorMessage">password is not matching</small>
+                        </div>
+                    </div>
+                </div> -->
+           
+            <div class="form-row">
+                <div class="form-group  col-lg-12 col-md-12 col-sm-12 pt-3">
+                    <button type="button" class="btn btn-info mt-2" [disabled]="!signupForm.valid"
+                        (click)="signup()">Signup</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container borderAlign">
+    <div class="invalidError pt-5" *ngIf='newUserFlag == true'>
+        <div class=" col-sm-12 col-md-12 col-lg-12 signup-notification-color border   p-1 rounded" >
+            <h5 class="p-2">New User created Successfully.click on <a class="login" routerLink="/login">Login </a> to continue shopping</h5>
+        </div>
+    </div>
+</div>
