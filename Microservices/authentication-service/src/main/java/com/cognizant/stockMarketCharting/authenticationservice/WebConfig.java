@@ -12,16 +12,9 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer {
+public class WebConfig  {
 	private static final Logger LOGGER = LoggerFactory.getLogger(WebConfig.class);
-	@Override
-	public void addCorsMappings(CorsRegistry registry) {
-		LOGGER.info("Start");
-		registry.addMapping("/**")
-		.allowedMethods("*")
-		.allowedOrigins("*");
-		LOGGER.info("End");
-	} 
+	
 	@Bean
 	public JavaMailSender getJavaMailSender() {
 	    JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

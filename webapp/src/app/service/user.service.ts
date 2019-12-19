@@ -19,7 +19,8 @@ export class UserService {
     console.log(newUser);
     return this.httpClient.post<any>(this.baseUrl+"/authentication-service/stockmarket/users",newUser);
   }
-  editUserProfile(editUserProfile:any){
+  updateUser(user:user){
+    console.log(user);
     let token = "Bearer " + this.authenticationService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -27,16 +28,7 @@ export class UserService {
         'Authorization': token
       })
     };
-    console.log(editUserProfile);
-    let userDetails ={
-      userName:editUserProfile.userName,
-      password:editUserProfile.password,
-      email:editUserProfile.email,
-    contactNumber:editUserProfile.contactNumber,
-    confirmed:editUserProfile.confirmed
-    }
-    console.log(userDetails);
-  return this.httpClient.put<any>(this.baseUrl+"/authentication-service/stockmarket/users",userDetails,httpOptions);
+  return this.httpClient.put<user>(this.baseUrl+"/authentication-service/stockmarket/users",user,httpOptions);
   }
   getUser(userName :any){
     console.log(userName);

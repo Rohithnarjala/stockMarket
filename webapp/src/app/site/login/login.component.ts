@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/auth.service';
 export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   loginError: boolean = false;
+  userFlag: boolean =false;
   constructor(private authService: AuthService, private authenticationService: AuthenticationService,
     private router: Router, private userService: UserService, private routerActive: ActivatedRoute) { }
 
@@ -36,8 +37,14 @@ export class LoginComponent implements OnInit {
         this.authenticationService.setToken(response.token);
         this.authenticationService.setRole(response.role);
         this.authenticationService.setUser(response.user);
+        this.authenticationService.setConfirmed(response.confirmed);
         this.authService.login(loginForm.value.userName);
-
+        console.log(response.confirmed);
+if(response.confirmed == 'true'){
+  this.router.navigate(["/company"]);
+}else{
+  this.userFlag=true;
+}
       }, (error) => {
         this.error = "invalid userName/password";
         this.loginError = true;    

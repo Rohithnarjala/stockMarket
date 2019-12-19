@@ -12,7 +12,7 @@ import { user } from 'src/app/user';
 export class SignupComponent implements OnInit {
   signupForm: any;
   newUserFlag: boolean =false;
-  user: user = {
+  user: any = {
     userName:"",
     password:"",
     email:"",
@@ -59,6 +59,7 @@ this.userService.addUser(this.user).subscribe((response)=>{
   // if(response==true){
   //   //this.router.navigate(['login']);
   // } 
+  this.router.navigate(["/login"]);
 },(error)=>{
   this.newUserFlag = false;
 });

@@ -3,13 +3,18 @@ package com.cognizant.stockMarketCharting.authenticationservice.security;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import com.cognizant.stockMarketCharting.authenticationservice.model.Users;
 
+
 public class AppUser implements UserDetails {
+	
+	
+
 	private Users user;
 	private Collection<? extends GrantedAuthority> authorities; // to store role details
 

@@ -52,7 +52,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		.authorizeRequests()
 //		.antMatchers("/movieCruiser/movie-items").anonymous()
 //		.antMatchers("/movieCruiser/movie-items").permitAll()
-		.antMatchers("/stockmarket/users").anonymous()
+		.antMatchers("/stockmarket/users").permitAll()
+		.antMatchers("/stockmarket/users/confirm/{token}").permitAll()
 		.antMatchers("/stockmarket/authentication")
 		.authenticated().anyRequest().authenticated().and()
 		.addFilter(new JwtAuthorizationFilter(authenticationManager()));

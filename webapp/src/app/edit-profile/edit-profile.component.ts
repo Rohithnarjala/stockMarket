@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UserService } from '../service/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { user } from '../user';
+import { AuthService } from '../auth.service';
+import { AuthenticationService } from '../service/authentication.service';
 
 @Component({
   selector: 'app-edit-profile',
@@ -9,48 +12,52 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./edit-profile.component.css']
 })
 export class EditProfileComponent implements OnInit {
-  editProfileForm: FormGroup;
-  userDetails: any;
+  user: user;
+  profileEditForm: FormGroup;
+  editPasswordFlag: boolean;
+  passwordFlag: boolean;
+  verifyFlag: boolean;
 
-  constructor(private userService :UserService,private router:ActivatedRoute,private route:Router) { 
-    this.editProfileForm=new FormGroup({
-      'id':new FormControl("", [Validators.required]),
-      'userName':new FormControl("", [Validators.required]),
-      'password':new FormControl("", [Validators.required]),
-      'email':new FormControl("", [Validators.required]),
-      'contactNumber':new FormControl("", [Validators.required, Validators.minLength(10),
-        Validators.maxLength(10)]),
-      'confirmed':new FormControl("", [Validators.required]),
-
+  constructor(private userService: UserService, 
+      private authService: AuthService, 
+      private authenticateService: AuthenticationService,
+      private router: Router) {
+    userService.getUser(authService.getUserName()).subscribe(response =>{
+      this.user = response;
+      console.log(this.user);
     })
-  }
+   }
 
   ngOnInit() {
-    this.router.paramMap.subscribe(params =>{
-  console.log(params);
-  this.userService.getUser(params.get('userName')).subscribe(response =>{
-  console.log(response);
-  this.userDetails=response;
-  this.editProfileForm = new FormGroup({
-    'id':new FormControl(this.userDetails.id, [Validators.required]),
-    'userName':new FormControl(this.userDetails.userName, [Validators.required]),
-    'password':new FormControl(this.userDetails.password, [Validators.required]),
-    'email':new FormControl(this.userDetails.email, [Validators.required]),
-    'contactNumber': new FormControl(this.userDetails.contactNumber, [
-    Validators.required,
-    Validators.minLength(10),
-    Validators.maxLength(10)
-  ]),
-    'confirmed':new FormControl(this.userDetails.confirmed, [Validators.required]),
-});
-console.log(this.editProfileForm.value);
-});
+    this.profileEditForm = new FormGroup ({
+      oldPassword: new FormControl('',[Validators.required]),
+      password: new FormControl('',[Validators.required]),
+      confirmPassword: new FormControl('',[Validators.required])
     });
-    
   }
-  editprofile(editProfileForm:FormGroup){
-    this.userService.editUserProfile(editProfileForm.value).subscribe(response =>{
-      console.log(response);
+
+  editPassword(){
+    this.editPasswordFlag = true;
+  }
+  
+  passMatch(){
+    if(this.profileEditForm.value.password == this.profileEditForm.value.confirmPassword ){
+      this.passwordFlag = true;
+    }
+    else
+      this.passwordFlag = false;
+  }
+
+  verify(password){
+    this.authenticateService.authenticate(this.user.userName, this.profileEditForm.value.oldPassword).subscribe(response =>{
+      this.verifyFlag = true;
     })
+  }
+
+  submit(){
+    this.user.password = this.profileEditForm.value.password;
+    this.userService.updateUser(this.user).subscribe(response =>{
+        this.router.navigate(['excel-upload']);
+    });
   }
 }

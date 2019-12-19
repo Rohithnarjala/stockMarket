@@ -1,0 +1,9 @@
+<input type="file" 
+(change)="fileChange($event)"
+placeholder="Upload file" 
+accept=".pdf,.doc,.docx,.xlsx">
+
+
+<div  *ngIf="uploadFlag">
+  <app-summary></app-summary>
+</div>

@@ -8,6 +8,6 @@ import com.cognizant.stockMarketCharting.authenticationservice.model.Users;
 
 @Repository
 public interface UsersRepository extends JpaRepository<Users, Integer> {
-	public Users findByUserName(String us_user_name) throws UsernameNotFoundException;
-	public Users findById(int id);
+	public Users findByUserName(String userName) throws UsernameNotFoundException;
+	
 }

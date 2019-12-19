@@ -1,0 +1,43 @@
+<article class="container">
+        <div class=" row extra-margin-top-hospital extra-margin-bottom ">
+                <div *ngIf="dataLoaded | async" class="container col-6">
+                        <div class="container mb-2">
+                            <h3>Select First Company Code</h3>
+                        </div>
+                        <div class="container mb-2">
+                            <select class="form-control"
+                                (change)="saveCompanyOne($event.target.value)">
+                                <option value="true" selected disabled>Select first Company</option>
+                                <option *ngFor="let company of companies" value="{{company.companyCode}}">{{company.companyCode}}
+                                </option>
+                            </select>
+                        </div>
+                    
+                </div>
+                <div class="container col-6">
+                        <div class="container mb-2 ">
+                            <h3>Select Second Company Code</h3>
+                        </div>
+                        <div class="container mb-2">
+                            <select  class="form-control"
+                                (change)="saveCompanyTwo($event.target.value)">
+                                <option value="true" selected disabled>Select Second Company</option>
+                                <option *ngFor="let company of companies" value="{{company.companyCode}}">{{company.companyCode}}
+                                </option>
+                            </select>
+                        </div>
+                    
+                </div>
+                <div class="container d-flex mt-3 mb-3 justify-content-center">
+                <button class="btn btn-info" (click)="compareBoth()">Compare</button>    
+                </div>
+                <div class="container">
+                <div class=" alert alert-danger" *ngIf="diffrentFlag"><strong>Select diffrent Companies.</strong></div>
+                
+                <div class=" alert alert-danger" *ngIf="emptyFlag"><strong>Select Both Companies.</strong></div>
+                </div>
+                <div id="showdata" class="col-12 " *ngIf="!diffrentFlag && !emptyFlag">
+            
+                </div>
+            </div>
+        </article>

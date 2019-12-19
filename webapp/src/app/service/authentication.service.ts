@@ -12,6 +12,7 @@ export class AuthenticationService {
   private token: String;
   private role: String;
   private user: String;
+  private confirmed:String;
 
   constructor(private httpClient: HttpClient) { }
   authenticate(user: String, password: String): Observable<any> {
@@ -37,6 +38,12 @@ export class AuthenticationService {
   }
   public getUser() {
     return this.user;
+  }
+  public setConfirmed(confirmed: String) {
+    this.confirmed = confirmed;
+  }
+  public getConfirmed() {
+    return this.confirmed;
   }
 }
 

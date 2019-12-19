@@ -27,7 +27,6 @@ import com.cognizant.stockMarketCharting.authenticationservice.service.UserServi
 
 @RestController
 @RequestMapping("/stockmarket/users")
-@CrossOrigin("*")
 public class UserController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
@@ -52,7 +51,7 @@ public class UserController {
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 		appUserDetailsService.signup(user);
 		String token = userConfirmationService.setTokenForConfirmation(user.getUserName());
-		emailServiceImpl.send("ctstestmail10@gmail.com", user.getEmail(), "confirm yyour email", "http://localhost:8083/authentication-service/stock-market-authentication/confirm/"+token);
+		emailServiceImpl.send("ctstestmail10@gmail.com", user.getEmail(), "confirm yyour email", "http://localhost:8082/authentication-service/stockmarket/users/confirm/"+token);
 		LOGGER.info("End");
 	}
 	@GetMapping("/{user}")
@@ -61,6 +60,10 @@ public class UserController {
 		LOGGER.info("End");
 		return userService.getUser(user);
 		
+	}
+	@GetMapping("/confirm/{token}")
+	public void confirmMail(@PathVariable String token) {
+		userConfirmationService.confirmMailAddress(token);
 	}
 	@PutMapping
 	public void editUserDetails(@RequestBody Users user ) {

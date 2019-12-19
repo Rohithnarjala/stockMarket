@@ -20,6 +20,12 @@ export class HeaderComponent implements OnInit {
     this.authService.logout();
   }
   getUser() {
-    return this.authService.currentUser();
+    //console.log(this.authenticationService.getUser());
+    return this.authenticationService.getUser();
+   
   }
+  getRole(){
+    return this.authenticationService.getRole();
+  }
+ 
 }

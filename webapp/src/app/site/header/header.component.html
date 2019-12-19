@@ -1,22 +1,18 @@
 <nav class="navbar navbar-expand-lg bg-dark navbar-dark  ">
-    <a class="navbar-brand"><i class="material-icons align-middle text-white" href="#">movie</i></a>
+    <a class="navbar-brand"><i class="material-icons align-middle text-white" href="#">trending_down</i></a>
     <a class="navbar-brand mr-auto" href="#">Stock Market</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar" >
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="collapsibleNavbar">
         <ul class="navbar-nav ml-auto">
-            <li class="nav-item p-2">
-                <div *ngIf='getUser()==null;else elseBlock'>
-                  <a routerLink="" class="text-white" routerLinkActive="active-link">Movie Items</a>
-                </div>
-                <ng-template #elseBlock>
-                  <a [routerLink]='["/movieItem",getUser()]' class="text-white" routerLinkActive="active-link">Movie Items</a>
-                </ng-template>
-              </li>
-              <li class="nav-item p-2" *ngIf='getUser()!="admin" || getUser()==null'><a [routerLink]='["/editprofile",getUser()]' class="text-white"
+                <li class="nav-item p-2" *ngIf='getRole()=="admin" '><a routerLink="/excel-upload" class="text-white"
+                    routerLinkActive="active-link">File Upload</a></li>
+                    <li class="nav-item p-2" *ngIf='getRole()=="user" '><a routerLink="/chart-compare" class="text-white"
+                        routerLinkActive="active-link">Chart Comparision</a></li>
+              <li class="nav-item p-2" *ngIf='getRole()=="admin"||getRole()=="user"'><a routerLink="/editprofile" class="text-white"
                   routerLinkActive="active-link">Edit Profile</a></li>
-              <li class="nav-item p-2" *ngIf='getUser()!=null'><a [routerLink]='["/movieItem",getUser()]' class="text-white"
+              <li class="nav-item p-2" *ngIf='getUser()!=null'><a routerLink="/company" class="text-white"
                   routerLinkActive="active-link"><i
                     class="material-icons align-middle text-white">account_circle</i>{{getUser()}}</a></li>
               <li class="nav-item p-2" *ngIf='getUser()==null'><a routerLink="/login" class="text-white"

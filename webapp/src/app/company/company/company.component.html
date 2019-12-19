@@ -1,0 +1,59 @@
+<app-company-search (changeCompanyList)="filterList($event)"></app-company-search>
+<!-- <div class="row justify-content-center p-3">
+    <button type="submit" (click)="getChart()" class="btn btn-info text-white ">chart</button>
+</div> -->
+<div class="container-fluid mb-5" id="">
+        <div class="row table-responsive ">
+          <div class="col-lg-12" >
+            <table class="container table text-dark text-center" >
+                <thead>
+                  <tr>
+                    <th>Code</th>
+                    <th>Name</th>
+                    <th>Turnover (Millions)</th>
+                    <th>CEO</th>
+                    <th>Sector</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let company of filteredCompany">
+                  <td>{{company.companyCode}}</td>
+                  <td>{{company.name}}</td>
+                  <td>{{company.turnover | currency}}</td>
+                  <td>{{company.ceo}}</td>
+                  <td>{{company.sector.sectorName}}</td>
+                  <td>
+                      <a role="button" data-toggle="modal" data-target="#myModal" (click)=getCompanyDetails(company.id)><i class="icon-edit mb-1 material-icons align-middle">list</i></a>
+                      <a class="mx-2" (click)="plot(company.companyCode)"><i class="icon-edit mb-1 material-icons align-middle">show_chart</i></a>
+                  </td>
+                </tbody>
+        </table>
+          </div>
+        </div>
+      </div>
+      <div id="myModal" class="modal fade" style="margin-top: 11%" role="dialog">
+        <div class="modal-dialog  modal-lg">
+      
+          <div class="modal-content  d-flex justify-content-center px-3">
+            <div class="modal-header d-flex justify-content-center">
+                  <h4 class="modal-title">Company Details - {{company?.name}}</h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body d-flex justify-content-between ">
+            <ul class="list-group">
+                <h5>Board of directors</h5>
+                <div *ngFor="let directors of company?.boardOfDirectorsList">
+                    <li>{{directors.name}}</li>
+                </div>
+            </ul>
+            <ul class="list-group">
+                <h5>Listed stock exchanges & current prices</h5>
+                <div *ngFor="let list of stockDetailsLatestList">
+                    <li>{{list.stockExchange}} - {{list.currentPrice | currency}}</li>
+                </div>
+            </ul>
+            </div>
+          </div>
+      
+        </div>
+      </div>
