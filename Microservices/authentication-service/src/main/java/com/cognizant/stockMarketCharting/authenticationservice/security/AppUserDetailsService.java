@@ -39,6 +39,7 @@ public class AppUserDetailsService implements UserDetailsService{
 	@Transactional
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Users user = usersRepository.findByUserName(username);
+		System.out.println("uhgfyfgfghfhgfghhg ====>>>>"+user);
 		UserDetails appUser = null;
 		if (user == null) {
 			throw new UsernameNotFoundException("User not found");

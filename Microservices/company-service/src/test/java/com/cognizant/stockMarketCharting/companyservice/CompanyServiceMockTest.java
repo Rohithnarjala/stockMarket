@@ -74,7 +74,7 @@ public class CompanyServiceMockTest {
 		List<Company> companyList = companyService.getAllCompanies();
 		assertEquals(companyList.get(0).getCeo(), createCompanyList().get(0).getCeo());
 	}
-	
+	 
 //	@Test
 //	public void testGetAllStockExchange() {
 //		when(stockExchangeRepository.findAll()).thenReturn(createCompany().getStockExchangeList());
